@@ -32,7 +32,10 @@
     methods: {
       handleClick() {
         // 点击这个组件之后就跳转路由，路径变量由父组件传入
-        this.$router.replace(this.path)
+        // 如果当前已经在这个页面，则不进行跳转
+        if(!this.isActive) {
+          this.$router.replace(this.path)
+        }
       }
     }
   }
