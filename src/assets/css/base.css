@@ -24,6 +24,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   width: 100vw;
+  padding-bottom: 100px;
 }
 
 .clear-fix::after {

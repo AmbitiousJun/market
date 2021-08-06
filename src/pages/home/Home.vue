@@ -11,6 +11,10 @@
     <!-- 导航菜单 开始 -->
     <cat :catItems="catItems"/>
     <!-- 导航菜单 结束 -->
+    <!-- 楼层 开始 -->
+    <floor :floorList="floorList"/>
+    <!-- 楼层 结束 -->
+    <Footer/>
   </div> 
 </template>
 
@@ -18,6 +22,8 @@
   import NavBar from 'components/common/navbar/NavBar'
   import Swiper from './components/Swiper.vue'
   import Cat from './components/Cat.vue'
+  import Floor from './components/Floor.vue'
+  import Footer from 'components/content/Footer.vue'
   // 导入封装好的请求函数
   import HomeReq from 'network/home'
 
@@ -36,7 +42,9 @@
     components: {
       NavBar,
       Swiper,
-      Cat
+      Cat,
+      Floor,
+      Footer
     },
     created() {
       // 组件创建完成时请求页面数据
@@ -60,5 +68,14 @@
   .home-nav {
     background-color: var(--color-tint);
     color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+
+  #home {
+    padding-top: 44px;
   }
 </style>
