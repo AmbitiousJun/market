@@ -16,7 +16,16 @@ function getCatItems() {
   })
 }
 
+// 获取楼层数据
+function getFloorData() {
+  return request({
+    type: 'GET',
+    url: '/home/floordata'
+  })
+}
+
 export default {
   getSwiperData,
-  getCatItems
+  getCatItems,
+  getFloorData
 }

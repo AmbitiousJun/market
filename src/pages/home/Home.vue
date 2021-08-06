@@ -28,7 +28,9 @@
         // 轮播图数组
         swiperList: [],
         // 导航菜单
-        catItems: []
+        catItems: [],
+        // 楼层
+        floorList: []
       }
     },
     components: {
@@ -45,6 +47,10 @@
       // 2 请求导航菜单数据
       HomeReq.getCatItems().then(res => {
         this.catItems = res.message
+      })
+      // 3 请求楼层数据
+      HomeReq.getFloorData().then(res => {
+        this.floorList = res.message
       })
     }
   }
