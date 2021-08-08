@@ -11,18 +11,22 @@
     <!-- 导航菜单 开始 -->
     <cat :catItems="catItems"/>
     <!-- 导航菜单 结束 -->
-    <!-- 楼层 开始 -->
-    <floor :floorList="floorList"/>
-    <!-- 楼层 结束 -->
+    <!-- Tab控制栏 开始 -->
+    <tab-control :titles="titles"/>
+    <!-- Tab控制栏 结束 -->
+    <router-view/>
+    
     <Footer/>
   </div> 
 </template>
 
 <script>
-  import NavBar from 'components/common/navbar/NavBar'
+  // 页内组件
   import Swiper from './components/Swiper.vue'
   import Cat from './components/Cat.vue'
-  import Floor from './components/Floor.vue'
+  // 公共组件
+  import TabControl from 'components/content/TabControl.vue'
+  import NavBar from 'components/common/navbar/NavBar'
   import Footer from 'components/content/Footer.vue'
   // 导入封装好的请求函数
   import HomeReq from 'network/home'
@@ -36,15 +40,26 @@
         // 导航菜单
         catItems: [],
         // 楼层
-        floorList: []
+        floorList: [],
+        // 百度图片
+        images: []
+      }
+    },
+    computed: {
+      titles() {
+        return [
+          {name: '流行', route: '/home/floor'},
+          {name: '新款', route: '/home/new'},
+          {name: '潮流', route: '/home/sell'}
+        ]
       }
     },
     components: {
       NavBar,
       Swiper,
       Cat,
-      Floor,
-      Footer
+      Footer,
+      TabControl
     },
     created() {
       // 组件创建完成时请求页面数据
@@ -56,9 +71,9 @@
       HomeReq.getCatItems().then(res => {
         this.catItems = res.message
       })
-      // 3 请求楼层数据
-      HomeReq.getFloorData().then(res => {
-        this.floorList = res.message
+      // 3 请求百度图片
+      HomeReq.getImages().then(res => {
+        this.images = res.data.data
       })
     }
   }

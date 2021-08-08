@@ -12,29 +12,31 @@
 </template>
 
 <script>
-export default {
-  name: 'Floor',
-  props: {
-    floorList: {
-      type: Array,
-      default() {
-        return []
+  // 导入封装好的请求函数
+  import HomeReq from 'network/home'
+
+  export default {
+    name: 'Floor',
+    data() {
+      return {
+        floorList: []
       }
-    }
-  },
-  methods: {
-    isLeft(index) {
-      // 给左侧大图加上一个类名
-      if(index === 0) {
-        return 'left'
-      }
-      else if(index <= 2) {
-        return {right: true, top: true}
-      }
-      else return {right: true, bottom: true}
+    },
+    props: {
+      // floorList: {
+      //   type: Array,
+      //   default() {
+      //     return []
+      //   }
+      // }
+    },
+    created() {
+      // 请求楼层数据
+      HomeReq.getFloorData().then(res => {
+        this.floorList = res.message
+      })
     }
   }
-}
 </script>
 
 <style scoped>

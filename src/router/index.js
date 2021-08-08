@@ -7,6 +7,11 @@ const Category = () => import('../pages/category/Category')
 const Cart = () => import('../pages/cart/Cart')
 const Profile = () => import('../pages/profile/Profile')
 
+// 首页子路由
+const Floor = () => import('../pages/home/components/Floor')
+const New = () => import('../pages/home/components/New')
+const Sell = () => import('../pages/home/components/Sell')
+
 // 使用插件
 Vue.use(VueRouter)
 
@@ -19,7 +24,28 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '',
+        redirect: 'floor'
+      },
+      {
+        // 楼层（流行）
+        path: 'floor',
+        component: Floor
+      },
+      {
+        // 新款
+        path: 'new',
+        component: New
+      },
+      {
+        // 精选
+        path: 'sell',
+        component: Sell
+      }
+    ]
   },
   {
     path: '/category',
