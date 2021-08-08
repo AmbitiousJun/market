@@ -12,9 +12,11 @@
     <cat :catItems="catItems"/>
     <!-- 导航菜单 结束 -->
     <!-- Tab控制栏 开始 -->
-    <tab-control :titles="titles"/>
+    <tab-control class="tab" :titles="titles"/>
     <!-- Tab控制栏 结束 -->
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
     
     <Footer/>
   </div> 
@@ -92,5 +94,11 @@
 
   #home {
     padding-top: 44px;
+  }
+
+  .tab {
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    box-shadow: 0 3px 5px rgba(100, 100, 100, 0.2);
   }
 </style>
